@@ -5,6 +5,7 @@ const _ = require('lodash');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
 
+require('./db/mongoose');
 const { User } = require('./models/user');
 const { Todo } = require('./models/todo');
 
