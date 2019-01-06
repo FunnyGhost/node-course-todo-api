@@ -5,7 +5,6 @@ const _ = require('lodash');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
 
-const { mongoose } = require('./db/mongoose');
 const { User } = require('./models/user');
 const { Todo } = require('./models/todo');
 
@@ -102,6 +101,19 @@ app.patch('/todos/:id', (req, res) => {
       } else {
         res.status(404).send();
       }
+    },
+    err => {
+      res.status(400).send(err);
+    }
+  );
+});
+
+app.post('/users', (req, res) => {
+  const body = _.pick(req.body, ['email', 'password']);
+  const user = new User(body);
+  user.save().then(
+    doc => {
+      res.send(doc);
     },
     err => {
       res.status(400).send(err);
