@@ -6,7 +6,7 @@ const User = mongoose.model('User', {
     type: String,
     required: true,
     trim: true,
-    minLength: 1,
+    minlength: 1,
     unique: true,
     validate: {
       validator: validator.isEmail,
@@ -16,7 +16,7 @@ const User = mongoose.model('User', {
   password: {
     type: String,
     required: true,
-    minLength: 6
+    minlength: 6
   },
   tokens: [
     {
